@@ -58,12 +58,12 @@ const Home: NextPage = () => {
     }
   };
 
+  // @ts-nocheck
   const getUserNFTBalance = async () => {
     try {
       const signer = await getProviderOrSigner(true);
       const nftContract = getCryptodevsNFTContractInstance(signer);
-
-      const balance = await nftContract.balanceOf(signer.getAddress());
+      const balance = await nftContract.balanceOf(signer.getAddress()); // @ts-nocheck
       setNftBalance(parseInt(balance.toString()));
     } catch (error) {
       console.error(error);
@@ -171,6 +171,7 @@ const Home: NextPage = () => {
     }
     return web3Provider;
   };
+
 
   const getDaoContractInstance = (providerOrSigner) => {
     return new Contract(
